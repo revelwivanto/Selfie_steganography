@@ -7,18 +7,18 @@ def normalize_ratio(ratio):
     total = sum(ratio)
     return [x / total for x in ratio]
 
-def compare_ratios(ratio1, ratio2):
+def calculate_similarity(ratio1, ratio2):
     normalized_ratio1 = normalize_ratio(ratio1)
     normalized_ratio2 = normalize_ratio(ratio2)
-    return all(isclose(a, b, rel_tol=1e-9) for a, b in zip(normalized_ratio1, normalized_ratio2))
+    return sum(abs(a - b) for a, b in zip(normalized_ratio1, normalized_ratio2))
 
 def find_most_similar_ratio(target_ratio_str, *ratios_str):
     target_ratio = parse_ratio(target_ratio_str)
     ratios = [parse_ratio(r) for r in ratios_str]
     
-    similarities = [compare_ratios(target_ratio, r) for r in ratios]
+    similarities = [calculate_similarity(target_ratio, r) for r in ratios]
     
-    most_similar_index = similarities.index(True) if True in similarities else -1
+    most_similar_index = similarities.index(min(similarities))
     
     return most_similar_index
 
