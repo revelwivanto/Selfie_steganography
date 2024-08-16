@@ -2,26 +2,6 @@ import cv2
 import numpy as np
 import os
 
-def decimal_to_binary(num):
-    # Split the number into integer and fractional parts
-    integer_part = int(num)
-    fractional_part = num - integer_part
-    
-    # Convert integer part to binary
-    integer_binary = bin(integer_part).replace("0b", "")
-    
-    # Convert fractional part to binary
-    fractional_binary = ""
-    while fractional_part:
-        fractional_part *= 2
-        bit = int(fractional_part)
-        fractional_binary += str(bit)
-        fractional_part -= bit
-        if len(fractional_binary) > 10:  # Limit the length of the fractional part to avoid infinite loop
-            break
-    
-    return f"{integer_binary}.{fractional_binary}"
-
 def calculate_ratios(image_path, output_dir):
     # Read the image
     image = cv2.imread(image_path)
@@ -65,7 +45,4 @@ output_dir = 'Original_Dataset'
 object_ratio, boundary_ratio, background_ratio = calculate_ratios(image_path, output_dir)
 
 # Print the rounded ratios and their binary representations
-print(f"Object Ratio: {object_ratio} (Binary: {decimal_to_binary(object_ratio)})")
-print(f"Boundary Ratio: {boundary_ratio} (Binary: {decimal_to_binary(boundary_ratio)})")
-print(f"Background Ratio: {background_ratio} (Binary: {decimal_to_binary(background_ratio)})")
-print(f"overall ratio: {decimal_to_binary(background_ratio)}:{decimal_to_binary(background_ratio)}:{decimal_to_binary(background_ratio)}")
+print(f"Object Ratio: {object_ratio}:{boundary_ratio}:{background_ratio} ")
