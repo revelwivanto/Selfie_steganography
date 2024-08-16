@@ -68,3 +68,4 @@ object_ratio, boundary_ratio, background_ratio = calculate_ratios(image_path, ou
 print(f"Object Ratio: {object_ratio} (Binary: {decimal_to_binary(object_ratio)})")
 print(f"Boundary Ratio: {boundary_ratio} (Binary: {decimal_to_binary(boundary_ratio)})")
 print(f"Background Ratio: {background_ratio} (Binary: {decimal_to_binary(background_ratio)})")
+print(f"overall ratio: {decimal_to_binary(background_ratio)}:{decimal_to_binary(background_ratio)}:{decimal_to_binary(background_ratio)}")
